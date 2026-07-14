@@ -10,4 +10,4 @@ return false;
     }
 }
 //long is used to check that it does not overflow after maximum number so that is get stpped
-// for loop is used to repeat the iteration for the value of i to check whther is becomes a perfect square
+// for loop is used to repeat the iteration for the value of i to check whther is becomes a perfect squares
