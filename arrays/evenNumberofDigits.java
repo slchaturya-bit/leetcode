@@ -21,3 +21,4 @@ while (num > 0) {
 }
 
 // in this code we are counting the number of digits in each number of the array and checking if it is even or not. If it is even we increment the answer variable and finally return the answer.
+// this is a simple and efficient solution to the problem of finding how many numbers in the given array have an even number of digits.
