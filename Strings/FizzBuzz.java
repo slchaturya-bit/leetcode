@@ -22,3 +22,7 @@ return answer;//main logic is when we encounter multiple of 3 display fizz and b
 
     }
     }
+
+
+
+    // the main logic is when we encounter multiple of 3 display fizz and buzz when 5 is multiple
