@@ -35,3 +35,5 @@ for (int num : resultSet) {
 
     }
 }
+
+// main concept of using hash set is to find the unique elements in the array and also to find the intersection of two arrays
