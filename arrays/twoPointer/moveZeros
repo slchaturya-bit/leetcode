@@ -1,0 +1,23 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int left = 0;
+int right = 0;
+        while (right < nums.length) {
+    
+    if (nums[right] != 0) {
+
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+        
+        left++;
+    }
+
+    right++;
+}return;
+    }
+}
+// we left to count zeros and move them to the end of the array. 
+// The use of rigth is to traverse the array and find non-zero elements, while left keeps track of the position where the next non-zero element should be placed.
+//  When a non-zero element is found, it is swapped with the element at the left index, and both pointers are incremented accordingly.
+//  This ensures that all non-zero elements are moved to the front of the array, while zeros are pushed to the end. 
