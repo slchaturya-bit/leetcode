@@ -1,0 +1,368 @@
+SLIDING WINDOW - DSA NOTES
+==========================
+
+1. WHAT IS SLIDING WINDOW?
+---------------------------
+
+Sliding Window is a technique used mainly for arrays and strings
+when we need to work with CONTIGUOUS / CONSECUTIVE elements.
+
+Instead of recalculating the same elements again and again,
+we maintain a "window" and move it through the array.
+
+Example:
+
+Array:  1  2  3  4  5
+        ---------
+          Window
+
+Move the window:
+
+Array:  1  2  3  4  5
+           ---------
+             Window
+
+
+2. WHY USE SLIDING WINDOW?
+--------------------------
+
+Suppose we need the sum of every subarray of size k = 3.
+
+Without Sliding Window:
+
+1 + 2 + 3 = 6
+2 + 3 + 4 = 9
+3 + 4 + 5 = 12
+
+Some elements are calculated repeatedly.
+
+With Sliding Window:
+
+First window:
+[1 2 3] 4 5
+sum = 6
+
+Move the window:
+
+1 [2 3 4] 5
+
+Instead of calculating the entire sum again:
+
+newSum = oldSum - elementLeaving + elementEntering
+
+newSum = 6 - 1 + 4
+       = 9
+
+This avoids unnecessary calculations.
+
+
+3. TYPES OF SLIDING WINDOW
+--------------------------
+
+There are mainly two types:
+
+1. Fixed Size Sliding Window
+2. Variable Size Sliding Window
+
+
+4. FIXED SIZE SLIDING WINDOW
+----------------------------
+
+The window size remains constant.
+
+Example:
+
+k = 3
+
+[1 2 3] 4 5
+ 1 [2 3 4] 5
+ 1 2 [3 4 5]
+
+Every window contains exactly 3 elements.
+
+GENERAL LOGIC:
+
+1. Create the first window of size k.
+2. Calculate the required value.
+3. Move the window.
+4. Remove the element leaving the window.
+5. Add the element entering the window.
+6. Update the answer.
+7. Repeat.
+
+
+For sum problems:
+
+sum = sum - elementLeaving + elementEntering
+
+
+5. EXAMPLE OF FIXED WINDOW
+--------------------------
+
+nums = [2, 3, 1, 5, 4]
+k = 3
+
+First window:
+
+[2 3 1] 5 4
+
+sum = 2 + 3 + 1
+    = 6
+
+Move the window:
+
+2 [3 1 5] 4
+
+Remove 2 and add 5:
+
+newSum = 6 - 2 + 5
+       = 9
+
+Move again:
+
+2 3 [1 5 4]
+
+Remove 3 and add 4:
+
+newSum = 9 - 3 + 4
+       = 10
+
+
+6. VARIABLE SIZE SLIDING WINDOW
+--------------------------------
+
+In a variable-size window, the window size changes
+depending on a condition.
+
+Usually two pointers are used:
+
+left = 0
+right = 0
+
+right -> expands the window
+left  -> shrinks the window
+
+GENERAL IDEA:
+
+right moves
+    |
+    v
+Expand the window
+    |
+    v
+Check the condition
+    |
+    v
+If condition becomes invalid
+    |
+    v
+Move left
+    |
+    v
+Shrink the window
+
+
+Example:
+
+[left ........ right]
+
+If the window becomes invalid:
+
+   [left ...... right]
+         |
+         v
+       shrink
+
+Move left forward until the window becomes valid again.
+
+
+7. TWO IMPORTANT POINTERS
+--------------------------
+
+left  -> used to shrink the window
+right -> used to expand the window
+
+Usually:
+
+int left = 0;
+int right = 0;
+
+Both pointers generally move only forward.
+
+Therefore many Sliding Window problems can be solved in:
+
+Time Complexity: O(N)
+
+
+8. HOW TO RECOGNIZE SLIDING WINDOW
+-----------------------------------
+
+Look for words such as:
+
+Arrays:
+- subarray
+- contiguous
+- consecutive
+- exactly k elements
+- at most k
+- minimum subarray
+- maximum subarray
+
+Strings:
+- substring
+- consecutive characters
+- longest substring
+- shortest substring
+- at most k distinct characters
+
+IMPORTANT:
+
+Just because a problem contains the word "subarray"
+does NOT automatically mean it uses Sliding Window.
+
+We need to find a way to maintain the window efficiently.
+
+
+9. FIXED WINDOW VS VARIABLE WINDOW
+-----------------------------------
+
+FIXED WINDOW:
+
+Window size stays constant.
+
+Example:
+
+[1 2 3] 4 5
+ 1 [2 3 4] 5
+ 1 2 [3 4 5]
+
+Window size = k
+
+Common problems:
+- Maximum sum of subarray of size k
+- Maximum average of subarray of size k
+- Maximum number of vowels in substring of size k
+
+
+VARIABLE WINDOW:
+
+Window size changes.
+
+[left ........ right]
+
+Expand when needed.
+Shrink when the condition becomes invalid.
+
+Common problems:
+- Longest substring without repeating characters
+- Minimum size subarray sum
+- Longest substring with at most k distinct characters
+
+
+10. QUESTIONS TO ASK YOURSELF
+-----------------------------
+
+For FIXED WINDOW:
+
+1. What is the window size?
+2. What element is leaving?
+3. What element is entering?
+4. What information should I maintain?
+5. How do I update the answer?
+
+
+For VARIABLE WINDOW:
+
+1. When should I expand?
+2. What condition makes the window invalid?
+3. When should I shrink?
+4. What should I remove while shrinking?
+5. When should I update the answer?
+
+
+11. TIME COMPLEXITY
+-------------------
+
+Without Sliding Window:
+
+O(N * K)
+
+With Sliding Window:
+
+O(N)
+
+Why?
+
+Because each element generally enters the window once
+and leaves the window once.
+
+Extra Space:
+
+Usually O(1) if only a few variables are used.
+
+
+12. LEETCODE 643 - MAXIMUM AVERAGE SUBARRAY I
+----------------------------------------------
+
+This is a FIXED SIZE SLIDING WINDOW problem.
+
+Window size = k
+
+Logic:
+
+Calculate first window
+        |
+        v
+Calculate its sum
+        |
+        v
+Store it as maximum sum
+        |
+        v
+Remove left element
+        |
+        v
+Add new right element
+        |
+        v
+Update maximum sum
+        |
+        v
+Move the window
+        |
+        v
+Repeat
+        |
+        v
+maximum sum / k
+
+
+Core idea:
+
+sum = sum - elementLeaving + elementEntering
+
+
+13. MOST IMPORTANT IDEA
+-----------------------
+
+DO NOT MEMORIZE A SLIDING WINDOW CODE TEMPLATE.
+
+Instead, ask:
+
+What is my window?
+        |
+What is inside it?
+        |
+What element is leaving?
+        |
+What element is entering?
+        |
+What information do I need to maintain?
+        |
+How do I update that information?
+        |
+How do I move the window?
+
+
+Once this thinking becomes clear,
+the code becomes much easier.
